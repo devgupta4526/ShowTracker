@@ -2,17 +2,21 @@ package com.underground.showstracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.underground.showstracker.adapters.MovieRecyclerViewAdapter;
@@ -36,11 +40,33 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
     //View Model
     private MovieListViewModel movieListViewModel;
 
+    NavigationBarView bottomNavigation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //SearchIntent
+
+        
+        //setup bottom navigation
+        bottomNavigation = findViewById(R.id.btmNavView);
+        bottomNavigation.setOnItemSelectedListener( item -> {
+            Fragment fragment = null;
+            switch (item.getItemId()){
+                case R.id.searchNav:
+
+                    break;
+                case R.id.userNav:
+                    fragment = new userFragment();
+                    break;
+            }
+
+            loadFragment(fragment);
+            return true;
+        });
+        
         //id binding
         moviesCycle = findViewById(R.id.movies_recyclerView);
         nowPlayingViewPager = findViewById(R.id.movies_viewPager);
@@ -159,8 +185,13 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         startActivity(detailIntent);
     }
 
+    void loadFragment(Fragment fragment) {
+        //to attach fragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.home,fragment).commit();
+    }
+
     /* private void getRetrofitResponse() {
-        MovieApi movieApi = Servicey.getMovieApi();
+        MovieApi movieApi = Services.getMovieApi();
 
         Call<MovieSearchResponse> responseCall = movieApi
                 .searchMovie(

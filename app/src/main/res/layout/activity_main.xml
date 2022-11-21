@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MovieListActivity">
+    tools:context=".MovieListActivity"
+    android:id="@+id/home">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -61,6 +62,13 @@
         </LinearLayout>
 
     </ScrollView>
+    
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btmNavView"/>
 
     <include
         android:id="@+id/loading"
