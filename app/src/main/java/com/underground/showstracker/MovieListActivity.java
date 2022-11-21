@@ -40,8 +40,6 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
     //View Model
     private MovieListViewModel movieListViewModel;
 
-    NavigationBarView bottomNavigation;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +52,9 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         Intent UserI = new Intent(MovieListActivity.this, UserActivity.class);
         
         //setup bottom navigation
+        BottomNavigationView bottomNavigation;
         bottomNavigation = findViewById(R.id.btmNavView);
+        bottomNavigation.setSelectedItemId(R.id.homeNav);
         bottomNavigation.setOnItemSelectedListener( item -> {
             switch (item.getItemId()){
                 case R.id.searchNav:

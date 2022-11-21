@@ -14,10 +14,12 @@
         android:theme="@style/Theme.MovieBag">
         <activity
             android:name=".UserActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".SearchActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".ReviewActivity"
             android:exported="false" />
@@ -34,7 +36,8 @@
             android:name=".MovieListActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
