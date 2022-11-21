@@ -48,22 +48,22 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         setContentView(R.layout.activity_main);
 
         //SearchIntent
+        Intent SearchI = new Intent(MovieListActivity.this, SearchActivity.class );
 
+        //UserIntent
+        Intent UserI = new Intent(MovieListActivity.this, UserActivity.class);
         
         //setup bottom navigation
         bottomNavigation = findViewById(R.id.btmNavView);
         bottomNavigation.setOnItemSelectedListener( item -> {
-            Fragment fragment = null;
             switch (item.getItemId()){
                 case R.id.searchNav:
-
+                    startActivity(SearchI);
                     break;
                 case R.id.userNav:
-                    fragment = new userFragment();
+                    startActivity(UserI);
                     break;
             }
-
-            loadFragment(fragment);
             return true;
         });
         
