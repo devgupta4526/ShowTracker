@@ -126,6 +126,7 @@ public class MovieApiClient {
 
     }
 
+
     public void searchMoviesNowPlaying(int pageNumber) {
 
         if (retrieveMoviesNowPlayingRunnable != null) {
