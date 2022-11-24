@@ -2,6 +2,7 @@ package com.underground.showstracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -42,6 +43,13 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        //Main thread does not allow network processes which is required for api
+        //Overriding this below
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

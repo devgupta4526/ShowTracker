@@ -1,8 +1,6 @@
 package com.underground.showstracker;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +13,11 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayoutMediator;
-import com.underground.showstracker.adapters.MovieRecyclerViewAdapter;
 import com.underground.showstracker.adapters.NowPlayingAdapter;
 import com.underground.showstracker.adapters.OnMovieListener;
 import com.underground.showstracker.adapters.SearchViewAdapter;
 import com.underground.showstracker.models.MovieModel;
-import com.underground.showstracker.request.MovieApiClient;
+import com.underground.showstracker.request.RetrieveSearch;
 import com.underground.showstracker.viewmodels.MovieListViewModel;
 
 import java.util.ArrayList;
@@ -90,56 +86,53 @@ public class SearchActivity extends AppCompatActivity implements OnMovieListener
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getting string
+                //query
                 search = editText.getText().toString();
-                //calling the observers
-                ObserveMovieTrendingChange(search);
-                //api Calls
-                searchMovieApi(search, 1);
+                RetrieveSearch searching = new RetrieveSearch(search, 1);
+                searchList = searching.search();
+                if(searchList != null){
+                    adapter.setmMovies(searchList);
+                }
 
             }
         });
 
-
-
-
     }
 
-
-    //observing changes
-    private void ObserveMovieTrendingChange(String s) {
-        movieListViewModel.getMovies().observe(this, new Observer<List<MovieModel>>() {
-            @Override
-            public void onChanged(List<MovieModel> movieModels) {
-                // observe any data change
-                if (movieModels != null) {
-
-                    for (MovieModel movieModel : movieModels) {
-                        //get the data in log
-                        if(movieModel.getTitle().equalsIgnoreCase(s)) {
-                            searchList.add(movieModel);
-                            adapter.setmMovies(searchList);
-                        }
-                    }
-
-//                    for (MovieModel movieModel : searchList) {
+//    //observing changes
+//    private void ObserveMovieTrendingChange(String s) {
+//        movieListViewModel.getMovies().observe(this, new Observer<List<MovieModel>>() {
+//            @Override
+//            public void onChanged(List<MovieModel> movieModels) {
+//                searchList.clear();
+//                // observe any data change
+//                if (movieModels != null) {
+//
+//                    for (MovieModel movieModel : movieModels) {
 //                        //get the data in log
-//                        adapter.setmMovies(searchList);
+//                        if(movieModel.getTitle().equalsIgnoreCase(s)) {
+//                            searchList.add(movieModel);
+//                            adapter.setmMovies(searchList);
+//                        }
 //                    }
-                }
-                else {
-                    editText.setText("No Movies present");
-                }
-            }
-        });
-    }
+//
+////                    for (MovieModel movieModel : searchList) {
+////                        //get the data in log
+////                        adapter.setmMovies(searchList);
+////                    }
+//                }
+//                else {
+//                    editText.setText("No Movies present");
+//                }
+//            }
+//        });
+//    }
 
 
-    //calling the trending in main-activity
-    private void searchMovieApi(String query, int pageNumber) {
-        movieListViewModel.searchMovieApi(query, pageNumber);
-    }
-
+//    //calling the trending in main-activity
+//    private void searchMovieApi(String query, int pageNumber) {
+//        movieListViewModel.searchMovieApi(query, pageNumber);
+//    }
 
 
     private void configureRecyclerView() {

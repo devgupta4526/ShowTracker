@@ -67,6 +67,7 @@
         android:layout_below="@id/loginbutton"
         android:text="New User? SIGNUP!"/>
 
+    //nav bar DON'T Remove!!
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -29,6 +29,11 @@ public class MovieListViewModel extends ViewModel {
         return movieRepository.getMovies();
     }
 
+    public LiveData<List<MovieModel>> searchMovies() {
+        return movieRepository.getMovies();
+    }
+
+
     public LiveData<List<MovieModel>> getNowPlaying() {
         return movieRepository.getNowPlaying();
     }
@@ -58,6 +63,7 @@ public class MovieListViewModel extends ViewModel {
     public void searchMovieApi(String query, int pageNumber) {
         movieRepository.searchMovieApi(query, pageNumber);
     }
+
 
     //calling the now Playing in view-model
     public void searchMovieApiNowPlaying(int pageNumber) {

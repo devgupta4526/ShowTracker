@@ -54,6 +54,7 @@ public class MovieApiClient {
     private RetrieveReview retrieveReview;
 
 
+
     public static MovieApiClient getInstance() {
         if (instance == null) {
             instance = new MovieApiClient();
@@ -86,6 +87,7 @@ public class MovieApiClient {
     public LiveData<List<MovieModel>> getMovies() {
         return mMovies;
     }
+
 
     public LiveData<List<MovieModel>> getNowPlaying() {
         return mMoviesNowPlaying;
