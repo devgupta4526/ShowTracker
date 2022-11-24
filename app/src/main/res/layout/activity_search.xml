@@ -19,10 +19,19 @@
         android:layout_toRightOf="@+id/searchMov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="serach"
-        />
-    <androidx.recyclerview.widget.RecyclerView
+        android:text="serach" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/search_nav_bar"
         android:layout_below="@id/searchMov"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/navigation"
         android:id="@+id/searchResultItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

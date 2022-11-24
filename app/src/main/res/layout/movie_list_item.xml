@@ -38,8 +38,7 @@
             android:layout_height="127dp"
             android:layout_gravity="center"
             android:contentDescription="@string/movie_poster"
-            android:scaleType="center"
-             />
+            android:scaleType="center" />
 
         <LinearLayout
             android:layout_width="wrap_content"
