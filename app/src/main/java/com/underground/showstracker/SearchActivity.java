@@ -86,10 +86,12 @@ public class SearchActivity extends AppCompatActivity implements OnMovieListener
 //        ObserveMovieNowPlayingChange();
 
 
-        search = editText.getText().toString();
+
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //getting string
+                search = editText.getText().toString();
                 //calling the observers
                 ObserveMovieTrendingChange(search);
                 //api Calls
@@ -114,7 +116,7 @@ public class SearchActivity extends AppCompatActivity implements OnMovieListener
 
                     for (MovieModel movieModel : movieModels) {
                         //get the data in log
-                        if(movieModel.getTitle().contains(s)) {
+                        if(movieModel.getTitle().equalsIgnoreCase(s)) {
                             searchList.add(movieModel);
                             adapter.setmMovies(searchList);
                         }
