@@ -33,12 +33,14 @@ public class RetrieveSearch {
         cancelRequest = false;
     }
 
-    public List<MovieModel> search() {
+    public List<MovieModel> search(int filter) {
+        //filter is for differentiating movie search and TV show search 1->MovieSearch else->TVSearch
         //uses search method of api and returns list of movies api returns
         movieLoading.postValue(true);
         Response response = null;
         try {
-            response = searchMovies(query, pageNumber).execute();
+            if(filter==1) response = searchMovie(query, pageNumber).execute();
+            else response = searchTV(query, pageNumber).execute();
 
             if (cancelRequest) {
                 return null;
@@ -46,6 +48,7 @@ public class RetrieveSearch {
             if (response.code() == 200) {
                 movieLoading.postValue(false);
                 List<MovieModel> list = new ArrayList<>(((MovieSearchResponse) response.body()).getMovies());
+                System.out.println(list);
                 return list;
 //                if (pageNumber == 1) {
 //                    //sending to live data
@@ -73,8 +76,16 @@ public class RetrieveSearch {
     }
 
     //Search Query
-    private Call<MovieSearchResponse> searchMovies(String query, int pageNumber) {
+    private Call<MovieSearchResponse> searchMovie(String query, int pageNumber) {
         return Servicey.getMovieApi().searchMovie(
+                Credentials.API_KEY,
+                query,
+                pageNumber);
+    }
+
+    //Search Query
+    private Call<MovieSearchResponse> searchTV(String query, int pageNumber) {
+        return Servicey.getMovieApi().searchTV(
                 Credentials.API_KEY,
                 query,
                 pageNumber);

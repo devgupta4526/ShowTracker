@@ -7,6 +7,8 @@
     tools:context=".SearchActivity">
 
     <EditText
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         android:id="@+id/searchMov"
         android:layout_width="290dp"
         android:layout_height="50dp"
@@ -18,20 +20,26 @@
         android:id="@+id/searchBtn"
         android:layout_toRightOf="@+id/searchMov"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="serach" />
+        android:layout_height="50dp"
+        android:src="@drawable/searchbtn"
+        android:layout_marginTop="10dp"
+        android:text="SEARCH"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/searchNav"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/search_nav_bar"
+        android:layout_height="40dp"
         android:layout_below="@id/searchMov"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        app:menu="@menu/search_nav_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/navigation"
+        android:layout_below="@id/searchNav"
+        android:layout_above="@id/btmNavView"
         android:id="@+id/searchResultItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

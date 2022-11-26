@@ -32,7 +32,6 @@ public class MovieModel implements Parcelable {
 
     //parcelable
 
-
     public MovieModel(Parcel in) {
         title = in.readString();
         poster_path = in.readString();

@@ -6,11 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.underground.showstracker.adapters.NowPlayingAdapter;
@@ -35,6 +40,9 @@ public class SearchActivity extends AppCompatActivity implements OnMovieListener
 
     //View Model
     private MovieListViewModel movieListViewModel;
+
+    //filter is for differentiating movie search and TV show search 1->MovieSearch else->TVSearch
+    int filter = 1;
 
 
     @Override
@@ -70,33 +78,63 @@ public class SearchActivity extends AppCompatActivity implements OnMovieListener
             return true;
         });
 
+
+        BottomNavigationView searchBarNav = findViewById(R.id.searchNav);
+        searchBarNav.setOnItemSelectedListener(item->{
+            switch (item.getItemId()){
+                case R.id.tvShows:
+                    filter = 0;
+                    break;
+                default:
+                    filter = 1;
+            }
+            performSearch();
+            return true;
+        });
+
         //view-model
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
-
         //set up UI
         configureRecyclerView();
-
 
         //calling the observers
 //        ObserveMovieTrendingChange();
 //        ObserveMovieNowPlayingChange();
 
-
-
+        //perform search on clicking search
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //query
-                search = editText.getText().toString();
-                RetrieveSearch searching = new RetrieveSearch(search, 1);
-                searchList = searching.search();
-                if(searchList != null){
-                    adapter.setmMovies(searchList);
-                }
-
+                performSearch();
             }
         });
 
+        //perform search on clicking Enter in keypad
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    //query
+                    performSearch();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+    public void performSearch(){
+        search = editText.getText().toString();
+        RetrieveSearch searching = new RetrieveSearch(search, 1);
+
+        searchList = searching.search(filter);
+
+        //update recyclerview
+        if(searchList != null){
+            adapter.setmMovies(searchList);
+        }
     }
 
 //    //observing changes
