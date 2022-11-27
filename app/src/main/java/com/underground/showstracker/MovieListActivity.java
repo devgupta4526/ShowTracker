@@ -232,4 +232,18 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
             }
         });
     }*/
+
+    //changeWatchlist
+//    private void observeSimilarMovieChange() {
+//        movieListViewModel.getSimilarMovies().observe(this, new Observer<List<MovieModel>>() {
+//            @Override
+//            public void onChanged(List<MovieModel> movieModels) {
+//                if (movieModels != null) {
+//                    for (MovieModel movieModel : movieModels) {
+//                        similarMoviesAdapter.setSimilarMovies(movieModels);
+//                    }
+//                }
+//            }
+//        });
+//    }
 }

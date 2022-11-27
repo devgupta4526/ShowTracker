@@ -55,7 +55,33 @@ public class TV implements Parcelable {
     @Expose
     public String last_episode_to_air;
 
+    @SerializedName("name")
+    @Expose
+    public String name;
 
+    @SerializedName("next_episode_to_air")
+    @Expose
+    public String next_episode_to_air;
+
+    @SerializedName("number_of_episodes")
+    @Expose
+    public String number_of_episodes;
+
+    @SerializedName("number_of_seasons")
+    @Expose
+    public int number_of_seasons;
+
+    @SerializedName("poster_path")
+    @Expose
+    public String poster_path;
+
+//    @SerializedName("seasons")
+//    @Expose
+//    public List<Season> Seasons;
+
+    @SerializedName("status")
+    @Expose
+    public String status;
 
 
 
