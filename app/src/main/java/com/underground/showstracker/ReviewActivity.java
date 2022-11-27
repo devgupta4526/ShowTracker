@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.underground.showstracker.adapters.ReviewAdapter;
-import com.underground.showstracker.models.MovieModel;
+import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.models.Review;
 import com.underground.showstracker.viewmodels.MovieListViewModel;
 

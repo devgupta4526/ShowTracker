@@ -3,7 +3,6 @@ package com.underground.showstracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -17,13 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.underground.showstracker.adapters.MovieRecyclerViewAdapter;
 import com.underground.showstracker.adapters.NowPlayingAdapter;
 import com.underground.showstracker.adapters.OnMovieListener;
-import com.underground.showstracker.models.MovieModel;
+import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.viewmodels.MovieListViewModel;
 
 import java.util.List;

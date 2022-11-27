@@ -1,6 +1,6 @@
 package com.underground.showstracker.response;
 
-import com.underground.showstracker.models.Movie;
+import com.underground.showstracker.models.movieModels.Movie;
 
 //single movie
 public class MovieResponse {

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.underground.showstracker.adapters.CastAdapters;
 import com.underground.showstracker.models.Cast;
 import com.underground.showstracker.models.Crew;
-import com.underground.showstracker.models.MovieModel;
+import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.viewmodels.MovieListViewModel;
 
 import java.util.List;

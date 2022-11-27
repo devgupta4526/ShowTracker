@@ -8,8 +8,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.underground.showstracker.AppExecutors;
 import com.underground.showstracker.models.Cast;
 import com.underground.showstracker.models.Crew;
-import com.underground.showstracker.models.Movie;
-import com.underground.showstracker.models.MovieModel;
+import com.underground.showstracker.models.TVmodels.TV;
+import com.underground.showstracker.models.movieModels.Movie;
+import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.models.Review;
 import com.underground.showstracker.response.CastResponse;
 import com.underground.showstracker.response.MovieSearchResponse;
@@ -30,6 +31,7 @@ public class MovieApiClient {
     private MutableLiveData<List<MovieModel>> mMovies;
     private MutableLiveData<List<MovieModel>> mMoviesNowPlaying;
     private MutableLiveData<Movie> mSingleMovieModel;
+    private MutableLiveData<TV> mSingleTVModel;
     private MutableLiveData<List<MovieModel>> mSimilarMovieList;
     private MutableLiveData<List<Cast>> mCastList;
     private MutableLiveData<List<Review>> mReviewList;
@@ -39,6 +41,7 @@ public class MovieApiClient {
     public MutableLiveData<Boolean> reviewLoading;
     public MutableLiveData<Boolean> castLoading;
     public MutableLiveData<Boolean> singleMovieLoading;
+    public MutableLiveData<Boolean> singleTVLoading;
     public  MutableLiveData<Boolean> nowPlayingLoading;
     public MutableLiveData<Boolean> similarMovieLoading;
 
@@ -269,6 +272,62 @@ public class MovieApiClient {
         //Single Movie Call
         private Call<Movie> getMovie(int movieId) {
             return Servicey.getMovieApi().getMovie(movieId,
+                    Credentials.API_KEY);
+        }
+
+        private void cancelRequest() {
+            Log.v("TAG", "Cancelling the Request");
+            cancelRequest = true;
+        }
+
+    }
+
+    //execution of retrieval of data from api in background thread
+    private class RetrieveSingleTV implements Runnable {
+
+        private int tv_Id;
+        boolean cancelRequest;
+
+        public RetrieveSingleTV(int tv_Id) {
+
+            this.tv_Id = tv_Id;
+            cancelRequest = false;
+            singleTVLoading.postValue(true);
+        }
+
+        @Override
+        public void run() {
+            //Getting the response
+            {
+                try {
+                    singleTVLoading.postValue(true);
+                    Response response = getTV(tv_Id).execute();
+                    if (cancelRequest) {
+                        singleTVLoading.postValue(false);
+                        return;
+                    }
+                    if (response.code() == 200) {
+                        singleTVLoading.postValue(false);
+                        TV model = (TV) response.body();
+                        mSingleTVModel.postValue(model);
+                    } else {
+                        singleTVLoading.postValue(false);
+                        String error = response.errorBody().string();
+                        Log.v("TAG", "Error " + error);
+                        mSingleTVModel.postValue(null);
+                    }
+                } catch (IOException e) {
+                    singleTVLoading.postValue(false);
+                    e.printStackTrace();
+                }
+            }
+
+
+        }
+
+        //Single Movie Call
+        private Call<Movie> getTV(int tv_Id) {
+            return Servicey.getMovieApi().getTv(tv_Id,
                     Credentials.API_KEY);
         }
 

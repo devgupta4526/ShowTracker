@@ -1,5 +1,5 @@
 
-package com.underground.showstracker.models;
+package com.underground.showstracker.models.movieModels;
 
 
 import android.os.Parcel;
@@ -7,6 +7,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.underground.showstracker.models.Genre;
+import com.underground.showstracker.models.ProductionCompany;
 
 import java.util.List;
 

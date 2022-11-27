@@ -1,6 +1,6 @@
 package com.underground.showstracker.utils;
 
-import com.underground.showstracker.models.Movie;
+import com.underground.showstracker.models.movieModels.Movie;
 import com.underground.showstracker.response.CastResponse;
 import com.underground.showstracker.response.MovieSearchResponse;
 import com.underground.showstracker.response.ReviewResponse;
@@ -26,6 +26,13 @@ public interface MovieApi {
             @Query("api_key") String key,
             @Query("query") String query,
             @Query("page") int page
+    );
+
+    //search by id
+    @GET("/3/search/tv/{tv_id}?")
+    Call<Movie> getTv(
+            @Path("tv_id") int tv_id,
+            @Query("api_key") String key
     );
 
     //trending

@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.underground.showstracker.models.Cast;
 import com.underground.showstracker.models.Crew;
-import com.underground.showstracker.models.Movie;
-import com.underground.showstracker.models.MovieModel;
+import com.underground.showstracker.models.movieModels.Movie;
+import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.models.Review;
 import com.underground.showstracker.repositories.MovieRepository;
 

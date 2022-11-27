@@ -1,12 +1,10 @@
 package com.underground.showstracker.request;
 
-import android.os.StrictMode;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.underground.showstracker.models.Movie;
-import com.underground.showstracker.models.MovieModel;
+import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.response.MovieSearchResponse;
 import com.underground.showstracker.utils.Credentials;
 

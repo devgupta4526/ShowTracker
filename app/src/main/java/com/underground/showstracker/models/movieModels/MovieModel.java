@@ -1,4 +1,4 @@
-package com.underground.showstracker.models;
+package com.underground.showstracker.models.movieModels;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -56,8 +56,6 @@ public class MovieModel implements Parcelable {
     };
 
     //Getters
-
-
     public String getTitle() {
         return title;
     }

@@ -6,14 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,7 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.underground.showstracker.adapters.NowPlayingAdapter;
 import com.underground.showstracker.adapters.OnMovieListener;
 import com.underground.showstracker.adapters.SearchViewAdapter;
-import com.underground.showstracker.models.MovieModel;
+import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.request.RetrieveSearch;
 import com.underground.showstracker.viewmodels.MovieListViewModel;
 
