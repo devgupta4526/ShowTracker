@@ -184,6 +184,34 @@
                 android:contentDescription="@string/favourites"
                 android:foreground="?attr/selectableItemBackground" />
 
+            <ImageView
+                android:id="@+id/watched_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/favourite_btn"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="35dp"
+                android:contentDescription="Watched"
+                android:foreground="?attr/selectableItemBackground" />
+
+            <ImageView
+                android:id="@+id/currently_watching_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/watched_btn"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="35dp"
+                android:src="@drawable/watchingtv"
+                android:contentDescription="Currently Watching"
+                android:foreground="?attr/selectableItemBackground" />
+
+
         </RelativeLayout>
 
 
