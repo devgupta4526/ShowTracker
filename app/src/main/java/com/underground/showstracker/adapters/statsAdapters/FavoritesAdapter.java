@@ -27,7 +27,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private static final FavoritesAdapter favAdapter = new FavoritesAdapter();
 
-    public static  FavoritesAdapter getWatchlistInstance(){
+    public static  FavoritesAdapter getFavListInstance(){
         return favAdapter;
     }
 
@@ -64,7 +64,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void setWatchlist(List<MovieModel> mMovies) {
         FavoritesAdapter.clearList();
         for(MovieModel m: mMovies){
-            FavoritesAdapter.addWatchList(m);
+            FavoritesAdapter.addFavoriteList(m);
         }
         notifyDataSetChanged();
     }
@@ -77,11 +77,11 @@ public class FavoritesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return null;
     }
 
-    public static List<MovieModel> getWatchlist() {
+    public static List<MovieModel> getFavList() {
         return favList;
     }
 
-    public static void addWatchList(MovieModel m){
+    public static void addFavoriteList(MovieModel m){
         favList.add(m);
     }
 

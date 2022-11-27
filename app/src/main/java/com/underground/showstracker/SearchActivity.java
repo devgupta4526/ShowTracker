@@ -134,14 +134,6 @@ public class SearchActivity extends AppCompatActivity implements OnMovieListener
         //update recyclerview
         if(searchList != null){
             adapter.setmMovies(searchList);
-
-            //temporary watchlist initialization
-            WatchListMovieAdapter wm = WatchListMovieAdapter.getWatchlistInstance();
-            wm.setWatchlist(searchList);
-
-            //temporary favorites iniilaization
-            FavoritesAdapter favAda = FavoritesAdapter.getWatchlistInstance();
-            favAda.setWatchlist(searchList);
         }
     }
 

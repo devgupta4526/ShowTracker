@@ -56,7 +56,7 @@ public class UserActivity extends AppCompatActivity {
         WatchListMovieAdapter watchlistAdapter = WatchListMovieAdapter.getWatchlistInstance();
         watchlistCycle.setAdapter(watchlistAdapter);
 
-        FavoritesAdapter favAda = FavoritesAdapter.getWatchlistInstance();
+        FavoritesAdapter favAda = FavoritesAdapter.getFavListInstance();
         favouritesCycle.setAdapter(favAda);
 
 //        //Pagination support

@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.underground.showstracker.adapters.OnMovieListener;
 import com.underground.showstracker.adapters.ProductionCompaniesAdapter;
 import com.underground.showstracker.adapters.SimilarMoviesAdapter;
+import com.underground.showstracker.adapters.statsAdapters.CurrentlyWatchingMovieAdapter;
+import com.underground.showstracker.adapters.statsAdapters.FavoritesAdapter;
 import com.underground.showstracker.adapters.statsAdapters.WatchListMovieAdapter;
 import com.underground.showstracker.models.movieModels.Movie;
 import com.underground.showstracker.models.movieModels.MovieModel;
@@ -43,7 +46,8 @@ public class MovieDetailsActivity extends AppCompatActivity implements OnMovieLi
     MovieModel movieModel;
     WatchListMovieAdapter watchListMovieAdapter;
     ImageView fav, back_icon;
-    boolean fav_movie = false;
+    ImageView watchedCheck;
+    ImageView currentlyWatching;
 
 
     @Override
@@ -65,7 +69,11 @@ public class MovieDetailsActivity extends AppCompatActivity implements OnMovieLi
         cast_btn = findViewById(R.id.cast_btn);
         review_btn = findViewById(R.id.review_btn);
         fav = findViewById(R.id.favourite_btn);
+        watchedCheck = findViewById(R.id.watched_btn);
+        currentlyWatching = findViewById(R.id.currently_watching_btn);
         fav.setBackgroundResource(R.drawable.no_heart);
+        watchedCheck.setBackgroundResource(R.drawable.uncheck_check_mark);
+        currentlyWatching.setBackgroundResource(R.drawable.watchingtv);
         watchListMovieAdapter = WatchListMovieAdapter.getWatchlistInstance();
         back_icon = findViewById(R.id.back_icon_details);
 
@@ -95,18 +103,25 @@ public class MovieDetailsActivity extends AppCompatActivity implements OnMovieLi
             startActivity(reviewIntent);
         });
 
+        //Add to favorites
         fav.setOnClickListener(view -> {
-            fav_movie = !fav_movie;
-            if (fav_movie) {
-                fav.setBackgroundResource(R.drawable.ic_heart_filled);
-                watchListMovieAdapter.addWatchList(movieModel);
-            } else {
-                fav.setBackgroundResource(R.drawable.no_heart);
-            }
+            addRemoveFavorite();
         });
+
+        //Add to Watchlist
+        watchedCheck.setOnClickListener(view->{
+            addRemoveWatchList();
+        });
+
+        //Add to currentlyWatching
+        currentlyWatching.setOnClickListener(view->{
+            addRemoveCurrentlyWatching();
+        });
+
         back_icon.setOnClickListener(view -> {
             finish();
         });
+
 
     }
 
@@ -135,7 +150,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements OnMovieLi
 
     private void getDataFromIntent() {
         if (getIntent().hasExtra("movie")) {
-            movieModel = getIntent().getParcelableExtra("movie");
+            movieModel = (MovieModel) getIntent().getParcelableExtra("movie");
             movie_title.setText(movieModel.getTitle());
             movie_release_date.setText(movieModel.getRelease_date());
             movie_language.setText(getFullLanguageFormat(movieModel.getOriginal_language()));
@@ -204,5 +219,99 @@ public class MovieDetailsActivity extends AppCompatActivity implements OnMovieLi
     @Override
     public void onMovieClickNowPlaying(int position) {
         //nothing
+    }
+
+    public void addRemoveFavorite(){
+
+        //Already contains in favourite
+        //later remove this and add else in next if clause for favourite removal
+
+        //.contains wont work beacause addresses are different of two similar movieModel therefore will always return false
+//        if(FavoritesAdapter.getFavList().contains(movieModel)){
+//            fav.setBackgroundResource(R.drawable.ic_heart_filled);
+//            Toast.makeText(this, movieModel.getTitle()+" already in favorites", Toast.LENGTH_SHORT).show();
+//        }
+
+
+        //does
+        if (!FavoritesAdapter.getFavList().contains(movieModel)) {
+            fav.setBackgroundResource(R.drawable.ic_heart_filled);
+            if(!FavoritesAdapter.getFavList().contains(movieModel)){
+                FavoritesAdapter.addFavoriteList(movieModel);
+                Toast.makeText(this, movieModel.getTitle()+" added to favorites", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this, movieModel.getTitle()+" already in favorites", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        //favorite removal code should be in else
+        //currently does not added that functionality
+//            else {
+//                fav.setBackgroundResource(R.drawable.no_heart);
+//            }
+    }
+
+
+    public void addRemoveWatchList(){
+
+        //Already contains in watched list
+        //later remove this and add else in next if clause for watched removal
+
+        //.contains wont work beacause addresses are different of two similar movieModel therefore will always return false
+//        if(FavoritesAdapter.getFavList().contains(movieModel)){
+//            fav.setBackgroundResource(R.drawable.ic_heart_filled);
+//            Toast.makeText(this, movieModel.getTitle()+" already in favorites", Toast.LENGTH_SHORT).show();
+//        }
+
+
+        //does
+        if (!WatchListMovieAdapter.getWatchlist().contains(movieModel)) {
+            watchedCheck.setBackgroundResource(R.drawable.check_mark);
+            if(!WatchListMovieAdapter.getWatchlist().contains(movieModel)){
+                WatchListMovieAdapter.addWatchList(movieModel);
+                Toast.makeText(this, movieModel.getTitle()+" added to watchlist", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this, movieModel.getTitle()+" already in watchlist", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        //favorite removal code should be in else
+        //currently does not added that functionality
+//            else {
+//                fav.setBackgroundResource(R.drawable.no_heart);
+//            }
+    }
+
+    public void addRemoveCurrentlyWatching(){
+
+        //Already contains in watched list
+        //later remove this and add else in next if clause for watched removal
+
+        //.contains wont work beacause addresses are different of two similar movieModel therefore will always return false
+//        if(FavoritesAdapter.getFavList().contains(movieModel)){
+//            fav.setBackgroundResource(R.drawable.ic_heart_filled);
+//            Toast.makeText(this, movieModel.getTitle()+" already in favorites", Toast.LENGTH_SHORT).show();
+//        }
+
+
+        //does
+        if (!CurrentlyWatchingMovieAdapter.getCurrentWatchlist().contains(movieModel)) {
+            currentlyWatching.setBackgroundResource(R.drawable.yellowrectangle);
+            if(!CurrentlyWatchingMovieAdapter.getCurrentWatchlist().contains(movieModel)){
+                CurrentlyWatchingMovieAdapter.addCurrentWatchMovie(movieModel);
+                Toast.makeText(this, movieModel.getTitle()+" added to current list", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this, movieModel.getTitle()+" already in current list", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        //favorite removal code should be in else
+        //currently does not added that functionality
+//            else {
+//                fav.setBackgroundResource(R.drawable.no_heart);
+//            }
     }
 }
