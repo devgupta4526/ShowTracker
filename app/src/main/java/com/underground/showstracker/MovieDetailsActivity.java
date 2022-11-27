@@ -18,6 +18,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.underground.showstracker.adapters.OnMovieListener;
 import com.underground.showstracker.adapters.ProductionCompaniesAdapter;
 import com.underground.showstracker.adapters.SimilarMoviesAdapter;
+import com.underground.showstracker.adapters.WatchListMovieAdapter;
 import com.underground.showstracker.models.movieModels.Movie;
 import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.models.ProductionCompany;
@@ -40,6 +41,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements OnMovieLi
     SimilarMoviesAdapter similarMoviesAdapter;
     Button cast_btn, review_btn;
     MovieModel movieModel;
+    WatchListMovieAdapter watchListMovieAdapter;
     ImageView fav, back_icon;
     boolean fav_movie = false;
 
@@ -64,6 +66,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements OnMovieLi
         review_btn = findViewById(R.id.review_btn);
         fav = findViewById(R.id.favourite_btn);
         fav.setBackgroundResource(R.drawable.no_heart);
+        watchListMovieAdapter = WatchListMovieAdapter.getWatchlistInstance();
         back_icon = findViewById(R.id.back_icon_details);
 
         //setting Companies recycler-view
@@ -96,6 +99,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements OnMovieLi
             fav_movie = !fav_movie;
             if (fav_movie) {
                 fav.setBackgroundResource(R.drawable.ic_heart_filled);
+                watchListMovieAdapter.addWatchList(movieModel);
             } else {
                 fav.setBackgroundResource(R.drawable.no_heart);
             }

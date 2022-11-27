@@ -22,6 +22,7 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+
         //MovieIntent
         Intent MovieI = new Intent(UserActivity.this, MovieListActivity.class );
 

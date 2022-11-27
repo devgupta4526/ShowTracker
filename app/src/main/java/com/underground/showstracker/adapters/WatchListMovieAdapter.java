@@ -14,6 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.underground.showstracker.R;
+import com.underground.showstracker.models.movieModels.Movie;
 import com.underground.showstracker.models.movieModels.MovieModel;
 
 import java.util.List;
@@ -73,4 +74,13 @@ public class WatchListMovieAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
         return null;
     }
+
+    public static List<MovieModel> getWatchlist() {
+        return watchlist;
+    }
+
+    public static void addWatchList(MovieModel m){
+        watchlist.add(m);
+    }
+
 }
