@@ -17,11 +17,12 @@ import com.underground.showstracker.R;
 import com.underground.showstracker.models.movieModels.Movie;
 import com.underground.showstracker.models.movieModels.MovieModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WatchListMovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
-    public static List<MovieModel> watchlist;
+    public static List<MovieModel> watchlist = new ArrayList<>();
 
     private WatchListMovieAdapter() {
     }
