@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -52,8 +57,22 @@
         android:layout_height="wrap_content"
         app:menu="@menu/nav_bar"
         app:layout_constraintTop_toBottomOf="@id/imageCard"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="15dp"
         android:layout_alignParentBottom="true"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Watched Movies"
+        app:layout_constraintTop_toBottomOf="@id/navigation"
+        android:textSize="30dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_marginTop="10dp"
+        android:id="@+id/watched_movies"
+        android:layout_marginLeft="15dp"
+        />
 <!--       <com.airbnb.lottie.LottieAnimationView-->
 <!--           android:layout_width="100dp"-->
 <!--           android:layout_height="100dp"-->
@@ -73,10 +92,10 @@
 <!--           android:scaleType="fitCenter" />-->
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintTop_toBottomOf="@+id/navigation"
+        app:layout_constraintTop_toBottomOf="@+id/watched_movies"
+        android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btmNavView"
         android:id="@+id/watched_movies_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,3 +112,4 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
