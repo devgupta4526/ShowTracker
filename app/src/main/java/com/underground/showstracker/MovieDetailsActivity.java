@@ -18,7 +18,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.underground.showstracker.adapters.OnMovieListener;
 import com.underground.showstracker.adapters.ProductionCompaniesAdapter;
 import com.underground.showstracker.adapters.SimilarMoviesAdapter;
-import com.underground.showstracker.adapters.WatchListMovieAdapter;
+import com.underground.showstracker.adapters.statsAdapters.WatchListMovieAdapter;
 import com.underground.showstracker.models.movieModels.Movie;
 import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.models.ProductionCompany;

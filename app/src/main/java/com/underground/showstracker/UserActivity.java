@@ -1,6 +1,5 @@
 package com.underground.showstracker;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,14 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.underground.showstracker.adapters.ProductionCompaniesAdapter;
-import com.underground.showstracker.adapters.SimilarMoviesAdapter;
-import com.underground.showstracker.adapters.WatchListMovieAdapter;
+import com.underground.showstracker.adapters.statsAdapters.FavoritesAdapter;
+import com.underground.showstracker.adapters.statsAdapters.WatchListMovieAdapter;
 
 public class UserActivity extends AppCompatActivity {
 
 
     RecyclerView watchlistCycle;
+    RecyclerView favouritesCycle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +45,7 @@ public class UserActivity extends AppCompatActivity {
         });
 
         watchlistCycle = findViewById(R.id.watched_movies_recycler_view);
+        favouritesCycle = findViewById(R.id.favorites_recycler_view);
         setUpRecyclerView();
 
 
@@ -55,6 +55,9 @@ public class UserActivity extends AppCompatActivity {
 
         WatchListMovieAdapter watchlistAdapter = WatchListMovieAdapter.getWatchlistInstance();
         watchlistCycle.setAdapter(watchlistAdapter);
+
+        FavoritesAdapter favAda = FavoritesAdapter.getWatchlistInstance();
+        favouritesCycle.setAdapter(favAda);
 
 //        //Pagination support
 //        watchlistCycle.addOnScrollListener(new RecyclerView.OnScrollListener() {
