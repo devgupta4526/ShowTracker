@@ -60,4 +60,13 @@ dependencies {
 
     //lottie Animations (loading and more)
     implementation 'com.airbnb.android:lottie:5.2.0'
+
+    //http
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+
+    //circle image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
+
 }

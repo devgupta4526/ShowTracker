@@ -3,6 +3,7 @@
     package="com.underground.showstracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieBag">
         <activity
+            android:name=".TvShowActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserActivity"
             android:exported="false"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".SearchActivity"
             android:exported="false"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".ReviewActivity"
             android:exported="false" />
@@ -36,8 +40,8 @@
             android:name=".MovieListActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
