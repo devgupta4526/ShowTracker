@@ -10,7 +10,27 @@ public class Last_episode_to_air implements Parcelable {
 
     @SerializedName("air_date")
     @Expose
-    public String last_episode_to_air;
+    public String air_date;
+
+    @SerializedName("episode_number")
+    @Expose
+    public int episode_number;
+
+    @SerializedName("id")
+    @Expose
+    public int id;
+
+    @SerializedName("name")
+    @Expose
+    public String name;
+
+    @SerializedName("overview")
+    @Expose
+    public String overview;
+
+    @SerializedName("season_number")
+    @Expose
+    public String season_number;
 
     protected Last_episode_to_air(Parcel in) {
     }

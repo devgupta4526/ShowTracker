@@ -19,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.underground.showstracker.adapters.NowPlayingAdapter;
 import com.underground.showstracker.adapters.OnMovieListener;
 import com.underground.showstracker.adapters.SearchViewAdapter;
+import com.underground.showstracker.adapters.WatchListMovieAdapter;
 import com.underground.showstracker.models.movieModels.MovieModel;
 import com.underground.showstracker.request.RetrieveSearch;
 import com.underground.showstracker.viewmodels.MovieListViewModel;
@@ -132,6 +133,10 @@ public class SearchActivity extends AppCompatActivity implements OnMovieListener
         //update recyclerview
         if(searchList != null){
             adapter.setmMovies(searchList);
+
+            //temporary watchlist initialization
+            WatchListMovieAdapter wm = WatchListMovieAdapter.getWatchlistInstance();
+            wm.setWatchlist(searchList);
         }
     }
 
