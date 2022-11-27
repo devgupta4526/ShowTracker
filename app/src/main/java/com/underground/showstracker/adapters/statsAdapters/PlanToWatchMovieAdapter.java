@@ -21,6 +21,7 @@ import java.util.List;
 public class PlanToWatchMovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     public static List<MovieModel> planToWatch_list = new ArrayList<>();
+    private static List<String> planToWatch_Titles = new ArrayList<>();
 
     private PlanToWatchMovieAdapter() {
     }
@@ -64,7 +65,7 @@ public class PlanToWatchMovieAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void setWatchlist(List<MovieModel> mMovies) {
         PlanToWatchMovieAdapter.clearList();
         for(MovieModel m: mMovies){
-            PlanToWatchMovieAdapter.addWatchList(m);
+            PlanToWatchMovieAdapter.addtoList(m);
         }
         notifyDataSetChanged();
     }
@@ -77,12 +78,17 @@ public class PlanToWatchMovieAdapter extends RecyclerView.Adapter<RecyclerView.V
         return null;
     }
 
-    public static List<MovieModel> getWatchlist() {
+    public static List<String> getTitles() {
+        return planToWatch_Titles;
+    }
+
+    public static List<MovieModel> getList() {
         return planToWatch_list;
     }
 
-    public static void addWatchList(MovieModel m){
+    public static void addtoList(MovieModel m){
         planToWatch_list.add(m);
+        planToWatch_Titles.add(m.getTitle());
     }
 
     public static void clearList(){

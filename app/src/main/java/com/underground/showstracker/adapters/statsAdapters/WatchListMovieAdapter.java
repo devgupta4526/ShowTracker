@@ -20,7 +20,8 @@ import java.util.List;
 
 public class WatchListMovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
-    public static List<MovieModel> watchlist = new ArrayList<>();
+    private static List<MovieModel> watchlist = new ArrayList<>();
+    private static List<String> watchlistTitles = new ArrayList<>();
 
     private WatchListMovieAdapter() {
     }
@@ -62,7 +63,10 @@ public class WatchListMovieAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @SuppressLint("NotifyDataSetChanged")
     public void setWatchlist(List<MovieModel> mMovies) {
-        this.watchlist = mMovies;
+        WatchListMovieAdapter.clearList();
+        for(MovieModel m: mMovies){
+            WatchListMovieAdapter.addWatchList(m);
+        }
         notifyDataSetChanged();
     }
 
@@ -74,12 +78,21 @@ public class WatchListMovieAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return null;
     }
 
+    public static List<String> getTitles() {
+        return watchlistTitles;
+    }
+
     public static List<MovieModel> getWatchlist() {
         return watchlist;
     }
 
     public static void addWatchList(MovieModel m){
+        watchlistTitles.add(m.getTitle());
         watchlist.add(m);
+    }
+
+    public static void clearList(){
+        watchlist.clear();
     }
 
 }

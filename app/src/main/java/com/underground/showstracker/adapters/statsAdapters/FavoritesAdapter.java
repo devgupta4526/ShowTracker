@@ -20,7 +20,8 @@ import java.util.List;
 
 public class FavoritesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
-    public static List<MovieModel> favList = new ArrayList<>();
+    private static List<MovieModel> favList = new ArrayList<>();
+    private static List<String> favTitles = new ArrayList<>();
 
     private FavoritesAdapter() {
     }
@@ -77,12 +78,17 @@ public class FavoritesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return null;
     }
 
+    public static List<String> getTitles() {
+        return favTitles;
+    }
+
     public static List<MovieModel> getFavList() {
         return favList;
     }
 
     public static void addFavoriteList(MovieModel m){
         favList.add(m);
+        favTitles.add(m.getTitle());
     }
 
     public static void clearList(){

@@ -21,6 +21,7 @@ import java.util.List;
 public class CurrentlyWatchingMovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     public static List<MovieModel> cwMovies = new ArrayList<>();
+    private static List<String> cwMoviesTitles = new ArrayList<>();
 
     private CurrentlyWatchingMovieAdapter() {
     }
@@ -77,12 +78,17 @@ public class CurrentlyWatchingMovieAdapter extends RecyclerView.Adapter<Recycler
         return null;
     }
 
+    public static List<String> getTitles() {
+        return cwMoviesTitles;
+    }
+
     public static List<MovieModel> getCurrentWatchlist() {
         return cwMovies;
     }
 
     public static void addCurrentWatchMovie(MovieModel m){
         cwMovies.add(m);
+        cwMoviesTitles.add(m.getTitle());
     }
 
     public static void clearList(){
