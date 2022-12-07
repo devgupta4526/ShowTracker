@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="home"
+    <item android:title="HOME"
         android:id="@+id/homeNav"
         android:icon="@drawable/home"/>
-    <item android:title="search"
+    <item android:title="SEARCH"
         android:id="@+id/searchNav"
-        android:icon="@drawable/search"/>
-    <item android:title="user"
+        android:icon="@drawable/ic_action_search"/>
+    <item android:title="USER"
         android:id="@+id/userNav"
         android:icon="@drawable/user"/>
 </menu>

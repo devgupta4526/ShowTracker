@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/algorithm"
-        android:title="Watch" />
+        android:id="@+id/watching"
+        android:title="Watching" />
 
     <item
-        android:id="@+id/course"
+        android:id="@+id/currently_watching"
         android:title="Currently Watching" />
 
     <item
-        android:id="@+id/profile"
+        android:id="@+id/plan_to_watch"
         android:title="Planning to Watch" />
 </menu>
